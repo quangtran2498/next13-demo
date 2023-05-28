@@ -5,7 +5,8 @@ import type { Metadata } from "next";
 import { User } from "@/types";
 import getUser from "@/services/getUser";
 import { MetaTags } from "./head";
-import { usePageContext } from "@/providers";
+import { useStepsProgress } from "@/providers";
+// import { usePageContext } from "@/providers";
 
 type Params = {
   params: {
@@ -26,15 +27,22 @@ export async function generateMetadata({
 }
 
 export default async function UserPage({ params: { userId } }: Params) {
-  const value = usePageContext()
-  console.log(value?.valueStep,"fsdfsdfsdf");
+  const value = useStepsProgress();
+
+  const setValue = useStepsProgress()?.setValueStep;
+  console.log(value?.valueStep, "fsdfsdfsdf");
+  const test = () => {
+    // setValue(2);
+  console.log(value?.valueStep, "fsdfsdfsdf");
+
+  };
   const userData: Promise<User> = getUser(userId);
   const user = await userData;
 
   return (
     <>
       {/* <MetaTags title={"quang test"} description={"co nhieu tien"} /> */}
-      <h2>{user.name}</h2>
+      <h2 onClick={test}>{user.name}</h2>
     </>
   );
 }

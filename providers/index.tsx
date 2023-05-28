@@ -2,16 +2,16 @@
 
 import React, { useState, useMemo } from "react";
 interface HandleQuestionI {
-  valueStep: any;
-  setValueStep: any;
+  valueStep: number;
+  setValueStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const StepsProgressContext = React.createContext<HandleQuestionI | null>(null);
 
-export const usePageContext = () => React.useContext(StepsProgressContext);
+export const useStepsProgress = () => React.useContext(StepsProgressContext);
 
-const PageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [valueStep, setValueStep] = useState<any>(1);
+const StepsProgressProvider = ({ children }: { children: React.ReactNode }) => {
+  const [valueStep, setValueStep] = useState(0);
 
   const value = useMemo(() => {
     return {
@@ -27,4 +27,4 @@ const PageProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default PageProvider;
+export default StepsProgressProvider;

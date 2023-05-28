@@ -1,4 +1,4 @@
-import { usePageContext } from "@/providers";
+
 import getAllUsers from "@/services/getAllUser";
 import { User } from "@/types";
 import { Metadata } from "next";
